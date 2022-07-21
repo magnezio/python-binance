@@ -7226,6 +7226,28 @@ class Client(BaseClient):
         """
         return self._request_margin_api('get', 'c2c/orderMatch/listUserOrderHistory', signed=True, data=params)
 
+    # Portfolio APIs
+
+    def get_portfolio_account(self, **params):
+        """Get Portfolio Margin Account Info
+
+        https://binance-docs.github.io/apidocs/spot/en/#get-portfolio-margin-account-info-user_data
+
+        :param recvWindow: optional
+        :type recvWindow: int
+
+        :returns: API response
+
+        {
+            "uniMMR": "5167.92171923",        // Portfolio margin account maintenance margin rate
+            "accountEquity": "122607.35137903",   // Account equity, unit：USD
+            "accountMaintMargin": "23.72469206", // Portfolio margin account maintenance margin, unit：USD
+            "accountStatus": "NORMAL"   // Portfolio margin account status:"NORMAL", "MARGIN_CALL", "SUPPLY_MARGIN", "REDUCE_ONLY", "ACTIVE_LIQUIDATION", "FORCE_LIQUIDATION", "BANKRUPTED"
+        }
+
+        """
+        return self._request_margin_api('get', 'portfolio/account', signed=True, data=params)
+
     def close_connection(self):
         if self.session:
             self.session.close()
