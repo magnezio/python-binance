@@ -6061,7 +6061,7 @@ class Client(BaseClient):
         https://binance-docs.github.io/apidocs/futures/en/#account-information-user_data
 
         """
-        return self._request_futures_api('get', 'account', True, data=params)
+        return self._request_futures_api('get', 'account', True, 2, data=params)
 
     def futures_change_leverage(self, **params):
         """Change user's initial leverage of specific symbol market
@@ -8248,10 +8248,10 @@ class AsyncClient(BaseClient):
         return await self._request_futures_api('delete', 'batchOrders', True, data=params)
 
     async def futures_account_balance(self, **params):
-	return await self._request_futures_api('get', 'balance', True, version=2, data=params)
+        return await self._request_futures_api('get', 'balance', True, version=2, data=params)
 
     async def futures_account(self, **params):
-        return await self._request_futures_api('get', 'account', True, data=params)
+        return await self._request_futures_api('get', 'account', True, version=2, data=params)
 
     async def futures_change_leverage(self, **params):
         return await self._request_futures_api('post', 'leverage', True, data=params)
